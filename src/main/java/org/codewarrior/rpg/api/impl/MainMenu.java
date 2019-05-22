@@ -6,12 +6,14 @@ import org.codewarrior.rpg.api.Menu;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static org.codewarrior.rpg.api.config.Messages.ENTER_NUMBER_CHOICE;
+
 class MainMenu extends Menu {
     private static final Logger LOGGER = Logger.getInstance(MainMenu.class);
     private static final Map<String, MenuOption> options = new LinkedHashMap<>();
 
     MainMenu() {
-        super("Main Menu", options, "Enter the number corresponding to your choice");
+        super("Main Menu", options, ENTER_NUMBER_CHOICE);
 
     }
 

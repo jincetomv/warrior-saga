@@ -9,6 +9,8 @@ import org.codewarrior.rpg.domain.entities.Map;
 import org.codewarrior.rpg.domain.entities.Player;
 import org.codewarrior.rpg.ports.Adapter;
 
+import static org.codewarrior.rpg.api.config.Messages.*;
+
 public class GameApiImpl implements GameApi {
 
     GameApiImpl(Adapter adapter, ApplicationApi applicationApi, DisplayMenuHelper displayMenuHelper, GameMenu gameMenu, NavigationApi navigationApi) {
@@ -78,23 +80,23 @@ public class GameApiImpl implements GameApi {
 
     @Override
     public void showPlayerCreatedMessage() {
-        adapter.showMessage("Player has been created with the following status");
+        adapter.showMessage(PLAYER_CREATED);
 
     }
 
     @Override
     public void showSaveFailedMessage() {
-        adapter.showMessage("Failed to save game, What do you want to do now?");
+        adapter.showMessage(GAME_SAVE_FAILED);
     }
 
     @Override
     public void showSaveSuccessMessage() {
-        adapter.showMessage("Successfully saved game, What do you want to do now?");
+        adapter.showMessage(GAME_SAVE_SUCCESS);
     }
 
     @Override
     public void showWinMessage() {
-        adapter.showMessage("Wow.. you won the game");
+        adapter.showMessage(PLAYER_WON);
     }
 
     @Override
@@ -107,7 +109,7 @@ public class GameApiImpl implements GameApi {
 
     @Override
     public void showLoadFailedMessage() {
-        adapter.showMessage("Failed to load the saved game/no saved game found, What do you want to do now?");
+        adapter.showMessage(FAILED_TO_LOAD);
 
     }
 }

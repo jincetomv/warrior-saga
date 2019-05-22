@@ -4,10 +4,12 @@ import org.codewarrior.common.Assert;
 import org.codewarrior.rpg.api.Menu;
 import org.codewarrior.rpg.ports.Adapter;
 
-public class DisplayMenuHelper {
+import static org.codewarrior.rpg.api.config.Messages.INCORRECT_OPTION;
+
+class DisplayMenuHelper {
     private final Adapter adapter;
 
-    public DisplayMenuHelper(Adapter adapter) {
+    DisplayMenuHelper(Adapter adapter) {
         this.adapter = Assert.notNull(adapter, "Adapter cannot be null");
     }
 
@@ -21,7 +23,7 @@ public class DisplayMenuHelper {
         } else
 
         {
-            adapter.showMessage("Incorrect/Invalid option chosen, Try again");
+            adapter.showMessage(INCORRECT_OPTION);
             return show(menu);
         }
     }

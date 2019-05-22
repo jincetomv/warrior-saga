@@ -6,6 +6,8 @@ import org.codewarrior.rpg.api.GameContext;
 import org.codewarrior.rpg.api.NavigationApi;
 import org.codewarrior.rpg.ports.Adapter;
 
+import static org.codewarrior.rpg.api.config.Messages.MET_ENEMY;
+
 public class NavigationApiImpl implements NavigationApi {
     private final ApplicationApi applicationApi;
     private final Adapter adapter;
@@ -18,7 +20,7 @@ public class NavigationApiImpl implements NavigationApi {
 
     @Override
     public void showEnemyWarning() {
-        adapter.showMessage("Ooh !! You have met the following enemy..");
+        adapter.showMessage(MET_ENEMY);
     }
 
     @Override

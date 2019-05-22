@@ -4,6 +4,7 @@ import org.codewarrior.common.Assert;
 import org.codewarrior.common.util.StringUtil;
 import org.codewarrior.rpg.api.CharacterApi;
 import org.codewarrior.rpg.api.PlayerInfo;
+import org.codewarrior.rpg.api.config.Messages;
 import org.codewarrior.rpg.domain.entities.Character;
 import org.codewarrior.rpg.ports.Adapter;
 
@@ -20,8 +21,8 @@ public class CharacterApiImpl implements CharacterApi {
 
     CharacterApiImpl(final Adapter adapter) {
         this.adapter = Assert.notNull(adapter, "Adapter");
-        questions.put(PLAYER_NAME, "Enter your name");
-        questions.put(CHARACTER_NAME, "Enter your character's name");
+        questions.put(PLAYER_NAME, Messages.PLAYER_NAME);
+        questions.put(CHARACTER_NAME, Messages.CHARACTER_NAME);
 
     }
 
@@ -32,7 +33,7 @@ public class CharacterApiImpl implements CharacterApi {
 
         String characterName = adapter.printMessageAndGetInput(questions.get(CHARACTER_NAME));
         if (StringUtil.isNullOrEmpty(playerName) || StringUtil.isNullOrEmpty(characterName)) {
-            adapter.showMessage("Incorrect/Invalid data entered, Try again");
+            adapter.showMessage(Messages.INCORRECT_DATA);
             return playerInfo();
         }
         PlayerInfo playerInfo = new PlayerInfo();
@@ -43,14 +44,14 @@ public class CharacterApiImpl implements CharacterApi {
 
     @Override
     public void showPlayerDiedWarning() {
-        adapter.showMessage("Oh no.. you have been killed");
+        adapter.showMessage(Messages.PLAYER_DIED);
     }
 
     @Override
     public void showPlayerKilledEnemyMessage(String enemyName, boolean leveledUp) {
-        adapter.showMessage(String.format("Oh wow.. you have killed enemy %s", enemyName));
+        adapter.showMessage(String.format(Messages.ENEMY_DIED, enemyName));
         if (leveledUp) {
-            adapter.showMessage("You have leveled up too.. Congrats");
+            adapter.showMessage(Messages.LEVELED_UP);
         }
     }
 

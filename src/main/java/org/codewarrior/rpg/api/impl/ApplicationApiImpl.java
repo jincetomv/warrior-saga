@@ -7,6 +7,9 @@ import org.codewarrior.rpg.domain.services.*;
 import org.codewarrior.rpg.domain.services.impl.*;
 import org.codewarrior.rpg.ports.Adapter;
 
+import static org.codewarrior.rpg.api.config.Messages.BYE;
+import static org.codewarrior.rpg.api.config.Messages.WELCOME;
+
 
 public class ApplicationApiImpl implements ApplicationApi {
     private static final Logger LOGGER = Logger.getInstance(ApplicationApiImpl.class);
@@ -24,7 +27,7 @@ public class ApplicationApiImpl implements ApplicationApi {
     @Override
     public void run() {
         LOGGER.info("Application start requested");
-        adapter.showMessage("---Welcome---");
+        adapter.showMessage(WELCOME);
         MenuApi menuApi = appContext.getBean(MenuApi.class);
         menuApi.showMainMenu();
     }
@@ -32,7 +35,7 @@ public class ApplicationApiImpl implements ApplicationApi {
     @Override
     public void shutdown() {
         LOGGER.info("ApplicationApiImpl shutdown requested");
-        adapter.showMessage("---Good Bye.. See you soon---");
+        adapter.showMessage(BYE);
         appContext.clear();
         System.exit(1);
     }

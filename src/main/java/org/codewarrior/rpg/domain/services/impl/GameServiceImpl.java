@@ -16,6 +16,9 @@ import org.codewarrior.rpg.domain.services.PlayerService;
 
 import java.io.IOException;
 
+import static org.codewarrior.rpg.domain.services.config.FileSystemLocations.GAME_SAVE_DIR;
+import static org.codewarrior.rpg.domain.services.config.FileSystemLocations.GAME_SAVE_FILE;
+
 public class GameServiceImpl implements GameService {
     private static final Logger LOGGER = Logger.getInstance(GameServiceImpl.class);
     private final PlayerService playerService;
@@ -70,7 +73,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public void save() {
         try {
-            FileUtil.saveObject(currentGame, "games", "saved-game.ser");
+            FileUtil.saveObject(currentGame, GAME_SAVE_DIR, GAME_SAVE_FILE);
             gameApi.showSaveSuccessMessage();
             menuApi.showMainMenu();
         } catch (IOException ex) {
@@ -85,7 +88,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public void resume() {
         try {
-            Game savedGame = FileUtil.loadSavedObject("games/saved-game.ser", Game.class);
+            Game savedGame = FileUtil.loadSavedObject(GAME_SAVE_DIR.concat("/").concat(GAME_SAVE_FILE), Game.class);
             load(savedGame);
             start();
         } catch (IOException | ClassNotFoundException ex) {
