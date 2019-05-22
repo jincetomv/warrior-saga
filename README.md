@@ -10,7 +10,7 @@ This is a role playing game
 * Invader  - Third level
 * Achiever - Fourth level and most experienced level, complexity is the highest among all four
 
-Level upgrade is based on the complexity.
+Level upgrade is based on the complexity and it lies between 0 and 1.
 
 ## Operations
 
